@@ -8,7 +8,7 @@ const port = args[0] || 8546;
 
 
 app.get('/panel', (req, res, next) => {
-  res.sendFile(__dirname + '/view/index.html');
+  res.sendFile(__dirname + '/view/dashboard.html');
 });
 
 app.get('/panel/favicon', (req, res, next) => {
