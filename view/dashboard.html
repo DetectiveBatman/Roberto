@@ -3,25 +3,46 @@
   <head>
     <title>پنل</title>
     <link rel="icon" href="/panel/favicon" type="image/x-icon">
+
     <link rel="stylesheet" type="text/css" href="/panel/lib/css/main.css">
+    <link href="/panel/lib/css/all.min.css" rel="stylesheet">
   </head>
   <body>
     <!-- Right Menu -->
     <div id="menu">
-      <div id="menu-logo">
+      <a id="menu-logo" href="/">
         <div>
           <img src="/panel/lib/assets/Logo.png">
         </div>
         <div id="span-parent">
           <span>کما استودیو</span>
         </div>
-      </div>
+      </a>
       <!-- Menu List -->
       <div id="menu-div">
         <ul id="menu-ul">
+
           <li class="menu-li">
-            <i></i>
+            <a class="menu-a" href="/panel">
+              <i class="fas fa-home"></i>
+              <span>داشبورد</span>
+            </a>
           </li>
+
+          <li class="menu-li">
+            <a class="menu-a" href="/panel/lists">
+              <i class="fas fa-list"></i>
+              <span>فهرست‌ها</span>
+            </a>
+          </li>
+
+          <li class="menu-li">
+            <a class="menu-a" href="/panel/posting">
+              <i class="fas fa-pen-alt"></i>
+              <span>محتواگذاری</span>
+            </a>
+          </li>
+
         </ul>
       </div>
     </div>

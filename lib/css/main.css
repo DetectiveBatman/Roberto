@@ -65,18 +65,46 @@ html, body {
 
 #menu-div {
   float: right;
+  width: 100%;
 }
 
 #menu-ul {
   padding: 0;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  float: right;
+  width: 100%;
 }
 
 .menu-li {
+  padding: 10px 20px;
+  padding-left: 0;
+  float: right;
   list-style: none;
   height: 20px;
+  width: calc(100% - 22px);
   display: flex;
+  flex-direction: row-reverse;
+}
 
+.menu-li:hover {
+  background: #2a3143;
+  cursor: pointer;
+  border-right: 2px #44bfe9 solid;
+}
+
+.menu-a {
+  height: 100%;
+}
+
+.menu-a i {
+  float: right;
+  color: #afbcc4;
+}
+
+.menu-a span {
+  float: left;
+  margin-right: 15px;
+  color: #afbcc4;
+  font-size: 18px;
 }
