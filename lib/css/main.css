@@ -21,6 +21,7 @@
 html, body {
   height: 100%;
   width: 100%;
+  background: #ecedf1;
 }
 
 #menu {
@@ -107,4 +108,34 @@ html, body {
   margin-right: 15px;
   color: #afbcc4;
   font-size: 18px;
+}
+
+#top-menu {
+  float: right;
+  width: calc(100% - 200px);
+  height: 50px;
+  background: #FFF;
+  border-bottom: 2px solid #dddddf;
+}
+
+.gray-icons {
+  color: #b9c4c6;
+}
+
+#top-menu ul {
+  padding: 0;
+  height: 100%;
+  float: left;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+#top-menu ul li {
+  margin: 0 20px;
+  float: left;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
