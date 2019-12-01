@@ -63,14 +63,20 @@
 
     <div id="container">
       <form action="/panel/api/news" method="post" enctype="multipart/form-data">
-      <div id="text-inputs">
-        <input type="text" name="newsTitle" placeholder="عنوان خبر را اینجا وارد کنید">
-        <input type="text" name="newsText" id="news-text" placeholder="متن خبر را اینجا وارد کنید...">
-      </div>
-      <div id="left-inputs">
-        <input type="file" name="images">
-        <input type="submit" name="newsSubmit" id="newsSub" value="انتشار">
-      </div>
+
+        <div id="text-inputs">
+          <input type="text" name="newsTitle" placeholder="عنوان خبر را اینجا وارد کنید">
+          <textarea style="resize:none;" name="newsText" id="news-text" placeholder="متن خبر را اینجا وارد کنید..."></textarea>
+        </div>
+
+        <div id="left-inputs">
+          <div class="img-upload-wrapper">
+            <button class="img-upload-button">انتخاب عکس</button>
+            <input type="file" name="images">
+          </div>
+          <input type="submit" name="newsSubmit" id="newsSub" value="انتشار">
+        </div>
+
     </form>
     </div>
   </body>
