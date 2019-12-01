@@ -1,0 +1,76 @@
+/* #dashboard-items-container {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+} */
+
+.dashboard-items {
+  float: right;
+  margin: 20px 45px;
+  width: 200px;
+  height: 75px;
+  display: flex;
+  flex-direction: row-reverse; /* row-reverse because it's RTL */
+  justify-content: center;
+  border-bottom: 2px #dddddf solid;
+}
+
+.dashboard-items-icon {
+  background: #f38461;
+  width: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.dashboard-items-icon i {
+  color: #FFF;
+  margin: 0 auto;
+}
+
+.dashboard-items-data {
+  width: calc(100% - 60px); /* 50px is the width of .dashboard-items-icon */
+  background: #FFF;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+}
+
+.dashboard-items-data-headline {
+  margin: 15px auto;
+  margin-bottom: 5px;
+  color: #f38461;
+  font-weight: 700;
+}
+
+.dashboard-items-data-count {
+  margin: 0 auto;
+  font-weight: 700;
+  font-family: 'Big Shoulders Display', cursive;
+}
+
+/* See the explanation of styles below at the comment after container div  */
+
+#item-2 {
+  background: #56bdde;
+}
+
+#item-2-headline {
+  color: #56bdde;
+}
+
+#item-3 {
+  background: #b198dc;
+}
+
+#item-3-headline {
+  color: #b198dc;
+}
+
+#item-4 {
+  background: #6bc7be;
+}
+
+#item-4-headline {
+  color: #6bc7be;
+}

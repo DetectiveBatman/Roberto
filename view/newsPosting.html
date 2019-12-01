@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>پنل</title>
+    <link rel="icon" href="/panel/favicon" type="image/x-icon">
+
+    <link rel="stylesheet" type="text/css" href="/panel/lib/css/main.css">
+    <link rel="stylesheet" type="text/css" href="/panel/lib/css/newsPosting.css">
+    <link href="/panel/lib/css/all.min.css" rel="stylesheet">
+  </head>
+  <body>
+    <!-- Right Menu -->
+    <div id="menu">
+      <a id="menu-logo" href="/">
+        <div>
+          <img src="/panel/lib/assets/Logo.png">
+        </div>
+        <div id="span-parent">
+          <span>کما استودیو</span>
+        </div>
+      </a>
+      <!-- Menu List -->
+      <div id="menu-div">
+        <ul id="menu-ul">
+
+          <li class="menu-li">
+            <a class="menu-a" href="/panel">
+              <i class="fas fa-home"></i>
+              <span>داشبورد</span>
+            </a>
+          </li>
+
+          <li class="menu-li">
+            <a class="menu-a" href="/panel/lists">
+              <i class="fas fa-list"></i>
+              <span>فهرست‌ها</span>
+            </a>
+          </li>
+
+          <li class="menu-li">
+            <a class="menu-a" href="/panel/newsPosting">
+              <i class="fas fa-pen-alt"></i>
+              <span>خبرگزاری</span>
+            </a>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+
+
+    <div id="top-menu">
+
+      <ul>
+        <li>
+          <a href="/panel/signout">
+            <i class="fas fa-sign-out-alt gray-icons"></i>
+          </a>
+        </li>
+      </ul>
+
+    </div>
+
+    <div id="container">
+      <form action="/panel/api/news" method="post" enctype="multipart/form-data">
+      <div id="text-inputs">
+        <input type="text" name="newsTitle" placeholder="عنوان خبر را اینجا وارد کنید">
+        <input type="text" name="newsText" id="news-text" placeholder="متن خبر را اینجا وارد کنید...">
+      </div>
+      <div id="left-inputs">
+        <input type="file" name="images">
+        <input type="submit" name="newsSubmit" id="newsSub" value="انتشار">
+      </div>
+    </form>
+    </div>
+  </body>
+</html>

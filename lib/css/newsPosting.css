@@ -1,0 +1,56 @@
+html, body {
+  overflow: hidden;
+}
+
+#text-inputs {
+  float: right;
+  height: 90%;
+  width: 70%;
+  margin: 0 10px;
+  bottom: calc(5% - 1px);
+  top: calc(5% - 1px);
+  position: relative;
+  border-radius: 3px;
+  -webkit-box-shadow: 0px 0px 20px 0px rgb(222, 222, 222);
+  -moz-box-shadow: 0px 0px 20px 0px rgb(222, 222, 222);
+  box-shadow: 0px 0px 20px 0px rgb(222, 222, 222);
+}
+
+input {
+  float: right;
+  direction: rtl;
+  border: 1px solid #ddd !important;
+  width: calc(100% - 20px);
+  padding: 10px;
+  background-color: #FFF;
+}
+
+input[name='title'] {
+  height: 20px;
+}
+
+#news-text {
+  margin-top: 20px;
+  float: right;
+  height: calc(100% - 60px);
+  width: calc(100% - 20px);
+  direction: rtl;
+  padding: 10px;
+  resize: none;
+  border: 1px solid #ddd !important;
+}
+
+#left-inputs {
+  float: right;
+  width: calc(30% - 30px);
+}
+
+#left-inputs input {
+  float: right;
+  width: 100%;
+}
+
+form {
+  float: right;
+  width: 100%;
+}
