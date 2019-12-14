@@ -1,0 +1,22 @@
+.category-selection {
+  float: right;
+  direction: rtl;
+  border: 1px solid #ddd !important;
+  width: calc(100% - 2px);
+  background-color: #FFF;
+}
+
+.category-selection ul {
+  padding: 0;
+}
+
+.category-selection ul li {
+  list-style: none;
+  direction: rtl;
+  margin: 10px 10px;
+}
+
+.category-selection ul li input {
+  float: left !important;
+  width: 20px !important;
+}
