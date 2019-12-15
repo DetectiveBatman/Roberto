@@ -37,6 +37,10 @@ app.get('/panel/manageCategory', (req, res, next) => {
   res.sendFile(__dirname + '/view/manageCategory.html');
 });
 
+app.get('/panel/manageSubcats', (req, res, next) => {
+  res.sendFile(__dirname + '/view/manageSubcats.html');
+});
+
 
 app.get('/panel/lib/*', (req, res, next) => {
   let path = __dirname + req.url.substr(6);
@@ -160,6 +164,55 @@ app.post('/panel/api/addCategory', upload.array("images"), (req, res, next) => {
   res.sendFile(__dirname + '/view/dashboard.html');
 
 });
+
+
+app.post('/panel/api/addSubcat', upload.array("images"), (req, res, next) => {
+  var parameters = req.body;
+  var header = String(Math.floor(Math.random() * (10000000 - 10000) + 10000));
+  var firstPhoto = String(Math.floor(Math.random() * (10000000 - 10000) + 10000));
+  var secondPhoto = String(Math.floor(Math.random() * (10000000 - 10000) + 10000));
+  var thirdPhoto = String(Math.floor(Math.random() * (10000000 - 10000) + 10000));
+  var cat = parameters.selectedCategory.split(',');
+  sql = `INSERT INTO subcategories (subcat, en, category, enCategory, description, photos, header) VALUES (
+    '${parameters.faName}',
+    '${parameters.enName}',
+    '${cat[1]}',
+    '${cat[0]}',
+    '${parameters.description}',
+    '${firstPhoto}.jpg,${secondPhoto}.jpg,${thirdPhoto}.jpg',
+    '${header}.jpg'
+  )`;
+
+  db.query(sql, (err, resp, fld) => {
+    if (err) console.log(err);
+  });
+
+
+  var headerImg = req.files[0].path;
+  var firstImg = req.files[1].path;
+  var secondImg = req.files[2].path;
+  var thirdImg = req.files[3].path;
+
+  fs.rename(headerImg, `../ComaStudio/lib/assets/${header}.jpg`, (err) => {
+    if (err) res.json({ok: false});
+  });
+  fs.rename(firstImg, `../ComaStudio/lib/assets/${firstPhoto}.jpg`, (err) => {
+    if (err) res.json({ok: false});
+  });
+  fs.rename(secondImg, `../ComaStudio/lib/assets/${secondPhoto}.jpg`, (err) => {
+    if (err) res.json({ok: false});
+  });
+  fs.rename(thirdImg, `../ComaStudio/lib/assets/${thirdPhoto}.jpg`, (err) => {
+    if (err) res.json({ok: false});
+  });
+
+  res.sendFile(__dirname + '/view/dashboard.html');
+
+});
+
+
+
+
 
 app.listen(port, () => {
   console.log(chalk.green.bold('[*] ') + chalk.green.bold('Listening on port:') + ' ' + chalk.red.bold(port));

@@ -6,7 +6,12 @@
 
     <link rel="stylesheet" type="text/css" href="/panel/lib/css/main.css">
     <link rel="stylesheet" type="text/css" href="/panel/lib/css/newsPosting.css">
+    <link rel="stylesheet" type="text/css" href="/panel/lib/css/addPortfolio.css">
+    <link rel="stylesheet" type="text/css" href="/panel/lib/css/manageCategory.css">
+
     <link href="/panel/lib/css/all.min.css" rel="stylesheet">
+
+    <script src="/panel/lib/js/jquery-2.1.1.js"></script>
   </head>
   <body>
     <!-- Right Menu -->
@@ -54,14 +59,14 @@
           <li class="menu-li">
             <a class="menu-a" href="/panel/manageCategory">
               <i class="fas fa-pen-alt"></i>
-              <span>مدیریت زیردسته‌ها</span>
+              <span>مدیریت دسته‌ها</span>
             </a>
           </li>
 
           <li class="menu-li">
             <a class="menu-a" href="/panel/manageSubcats">
               <i class="fas fa-pen-alt"></i>
-              <span>مدیریت دسته‌ها</span>
+              <span>مدیریت زیردسته‌ها</span>
             </a>
           </li>
 
@@ -83,37 +88,46 @@
     </div>
 
     <div id="container">
-      <form action="/panel/api/news" method="post" enctype="multipart/form-data">
+      <div id="right-category">
 
-        <div id="text-inputs">
-          <input type="text" name="newsTitle" placeholder="عنوان خبر را اینجا وارد کنید">
-          <textarea style="resize:none;" name="newsText" id="news-text" placeholder="متن خبر را اینجا وارد کنید..."></textarea>
-        </div>
+      </div>
 
-        <div id="left-inputs">
+      <div id="add-category">
+        <form action="/panel/api/addSubcat" method="post" enctype="multipart/form-data">
+          <input id="faCat" type="text" placeholder="نام زیردسته به فارسی" name="faName">
+          <input id="enCat" type="text" placeholder="نام زیردسته به انگلیسی" name="enName">
+          <textarea style="resize:vertical;" name="description" id="news-text" placeholder="توضیحات زیردسته را وارد نمایید..."></textarea>
+
           <div class="img-upload-wrapper">
-            <button class="img-upload-button">انتخاب عکس</button>
+            <button class="img-upload-button">انتخاب عکس هدر</button>
+            <input type="file" name="images">
+          </div>
+
+          <div class="img-upload-wrapper">
+            <button class="img-upload-button">انتخاب عکس اول</button>
+            <input type="file" name="images">
+          </div>
+
+          <div class="img-upload-wrapper">
+            <button class="img-upload-button">انتخاب عکس دوم</button>
+            <input type="file" name="images">
+          </div>
+
+          <div class="img-upload-wrapper">
+            <button class="img-upload-button">انتخاب عکس سوم</button>
             <input type="file" name="images">
           </div>
 
           <div class="category-selection" id="cat-selection">
-            <ul>
-              <li>
-                <span>اخبار استودیو</span>
-                <input name="type" value="studio" type="radio">
-              </li>
-
-              <li>
-                <span>اخبار دیگر</span>
-                <input name="type" value="other" type="radio">
-              </li>
-            </ul>
+            <ul></ul>
           </div>
 
-          <input type="submit" name="newsSubmit" id="newsSub" value="انتشار">
-        </div>
-
-    </form>
+          <input type="submit" value="تایید">
+        </form>
+      </div>
     </div>
+
+    <script src="/panel/lib/js/manageSubcats.js"></script>
+
   </body>
 </html>
