@@ -157,7 +157,7 @@ app.post('/panel/api/addCategory', upload.array("images"), (req, res, next) => {
     if (err) res.json({ok: false});
   });
 
-  res.json({ok: true});
+  res.sendFile(__dirname + '/view/dashboard.html');
 
 });
 
