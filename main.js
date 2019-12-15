@@ -41,6 +41,10 @@ app.get('/panel/manageSubcats', (req, res, next) => {
   res.sendFile(__dirname + '/view/manageSubcats.html');
 });
 
+app.get('/panel/messages', (req, res, next) => {
+  res.sendFile(__dirname + '/view/messages.html');
+});
+
 
 app.get('/panel/lib/*', (req, res, next) => {
   let path = __dirname + req.url.substr(6);

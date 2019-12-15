@@ -1,0 +1,85 @@
+#container {
+  display: flex;
+  float: right;
+}
+#messages-list {
+  width: 90%;
+  float: right;
+  background: #FFF;
+  border: 1px solid #ddd;
+  margin: 40px auto;
+  height: auto;
+  border-radius: 3px;
+}
+
+#messages-list ul {
+  float: right;
+  padding: 0;
+  width: calc(100% - 30px);
+}
+
+#messages-list ul li {
+  float: right;
+  width: 100%;
+  border-bottom: 1px #ddd solid;
+  list-style: none;
+  direction: rtl;
+  text-align: right;
+  padding: 10px 15px;
+}
+
+#messages-list ul li * {
+  border-left: 1px #ddd solid;
+  padding-left: 20px;
+}
+
+#messages-list ul li:hover {
+  cursor: pointer;
+}
+
+.messages-id {
+  float: right;
+}
+
+.messages-subject {
+  margin-right: 20px;
+}
+
+.messages-sender {
+  margin-right: 20px;
+}
+
+#message {
+  width: 90%;
+  float: right;
+  background: #FFF;
+  border: 1px solid #ddd;
+  margin: 40px auto;
+  height: auto;
+  border-radius: 3px;
+  display: none;
+  padding: 20px;
+  direction: rtl;
+  text-align: right;
+}
+
+#message * {
+  width: 100%;
+  float: right;
+}
+
+#message-text {
+  margin: 20px 0;
+}
+
+#back {
+  float: right;
+  width: 100px;
+  background: #ddd;
+  border: 1px #ccc solid;
+  border-radius: 3px;
+}
+
+#back:hover {
+  cursor: pointer;
+}
