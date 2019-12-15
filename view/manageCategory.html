@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>پنل</title>
+    <link rel="icon" href="/panel/favicon" type="image/x-icon">
+
+    <link rel="stylesheet" type="text/css" href="/panel/lib/css/main.css">
+    <link rel="stylesheet" type="text/css" href="/panel/lib/css/newsPosting.css">
+    <link rel="stylesheet" type="text/css" href="/panel/lib/css/addPortfolio.css">
+    <link rel="stylesheet" type="text/css" href="/panel/lib/css/manageCategory.css">
+
+    <link href="/panel/lib/css/all.min.css" rel="stylesheet">
+
+    <script src="/panel/lib/js/jquery-2.1.1.js"></script>
+  </head>
+  <body>
+    <!-- Right Menu -->
+    <div id="menu">
+      <a id="menu-logo" href="/">
+        <div>
+          <img src="/panel/lib/assets/Logo.png">
+        </div>
+        <div id="span-parent">
+          <span>کما استودیو</span>
+        </div>
+      </a>
+      <!-- Menu List -->
+      <div id="menu-div">
+        <ul id="menu-ul">
+
+          <li class="menu-li">
+            <a class="menu-a" href="/panel">
+              <i class="fas fa-home"></i>
+              <span>داشبورد</span>
+            </a>
+          </li>
+
+          <li class="menu-li">
+            <a class="menu-a" href="/panel/lists">
+              <i class="fas fa-list"></i>
+              <span>فهرست‌ها</span>
+            </a>
+          </li>
+
+          <li class="menu-li">
+            <a class="menu-a" href="/panel/newsPosting">
+              <i class="fas fa-pen-alt"></i>
+              <span>خبرگزاری</span>
+            </a>
+          </li>
+
+          <li class="menu-li">
+            <a class="menu-a" href="/panel/addPortfolio">
+              <i class="fas fa-pen-alt"></i>
+              <span>افزودن نمونه‌کار</span>
+            </a>
+          </li>
+
+          <li class="menu-li">
+            <a class="menu-a" href="/panel/manageCategory">
+              <i class="fas fa-pen-alt"></i>
+              <span>مدیریت دسته‌ها</span>
+            </a>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+
+
+    <div id="top-menu">
+
+      <ul>
+        <li>
+          <a href="/panel/signout">
+            <i class="fas fa-sign-out-alt gray-icons"></i>
+          </a>
+        </li>
+      </ul>
+
+    </div>
+
+    <div id="container">
+      <div id="right-category">
+
+      </div>
+
+      <div id="add-category">
+        <form action="/panel/api/addCategory" method="post" enctype="multipart/form-data">
+          <input id="faCat" type="text" placeholder="نام دسته به فارسی" name="faName">
+          <input id="enCat" type="text" placeholder="نام دسته به انگلیسی" name="enName">
+          <textarea style="resize:vertical;" name="description" id="news-text" placeholder="توضیحات دسته را وارد نمایید..."></textarea>
+
+          <div class="img-upload-wrapper">
+            <button class="img-upload-button">انتخاب عکس هدر</button>
+            <input type="file" name="images">
+          </div>
+
+          <div class="img-upload-wrapper">
+            <button class="img-upload-button">انتخاب عکس اول</button>
+            <input type="file" name="images">
+          </div>
+
+          <div class="img-upload-wrapper">
+            <button class="img-upload-button">انتخاب عکس دوم</button>
+            <input type="file" name="images">
+          </div>
+
+          <div class="img-upload-wrapper">
+            <button class="img-upload-button">انتخاب عکس سوم</button>
+            <input type="file" name="images">
+          </div>
+
+          <input type="submit" value="تایید">
+        </form>
+      </div>
+    </div>
+
+    <script src="/panel/lib/js/manageCategory.js"></script>
+
+  </body>
+</html>

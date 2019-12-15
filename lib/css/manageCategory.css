@@ -1,0 +1,32 @@
+#right-category {
+  float: right;
+  width: 70%;
+  margin: 20px 30px;
+  background: #FFF;
+  border: 1px solid #ddd;
+}
+
+#add-category {
+  float: left;
+  max-width: 20%;
+  margin: 20px 30px;
+  margin-right: 0;
+}
+
+#add-category input {
+  float: right;
+  direction: rtl;
+  border: 1px solid #ddd !important;
+  width: calc(100% - 22px);
+  padding: 10px;
+  background-color: #FFF;
+  margin: 5px 0;
+}
+
+#add-category input[type=submit] {
+  width: 100%;
+}
+
+#add-category input[type=submit]:hover {
+  cursor: pointer;
+}
