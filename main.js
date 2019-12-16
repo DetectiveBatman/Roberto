@@ -134,14 +134,15 @@ app.post('/panel/api/addCategory', upload.array("images"), (req, res, next) => {
     if (err) console.log(err);
   });
 
-  sql = `INSERT INTO subcategories (subcat, en, category, enCategory, description, photos, header) VALUES (
+  sql = `INSERT INTO subcategories (subcat, en, category, enCategory, description, photos, header, enDescription) VALUES (
     'همه',
     'all',
     '${parameters.faName}',
     '${parameters.enName}',
     '${parameters.description}',
     '${firstPhoto}.jpg,${secondPhoto}.jpg,${thirdPhoto}.jpg',
-    '${header}.jpg'
+    '${header}.jpg',
+    '${parameters.enDescription}'
   )`;
 
   db.query(sql, (err, resp, fld) => {
@@ -179,14 +180,15 @@ app.post('/panel/api/addSubcat', upload.array("images"), (req, res, next) => {
   var secondPhoto = String(Math.floor(Math.random() * (10000000 - 10000) + 10000));
   var thirdPhoto = String(Math.floor(Math.random() * (10000000 - 10000) + 10000));
   var cat = parameters.selectedCategory.split(',');
-  sql = `INSERT INTO subcategories (subcat, en, category, enCategory, description, photos, header) VALUES (
+  sql = `INSERT INTO subcategories (subcat, en, category, enCategory, description, photos, header, enDescription) VALUES (
     '${parameters.faName}',
     '${parameters.enName}',
     '${cat[1]}',
     '${cat[0]}',
     '${parameters.description}',
     '${firstPhoto}.jpg,${secondPhoto}.jpg,${thirdPhoto}.jpg',
-    '${header}.jpg'
+    '${header}.jpg',
+    '${parameters.enDescription}'
   )`;
 
   db.query(sql, (err, resp, fld) => {
