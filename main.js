@@ -83,6 +83,7 @@ app.post('/panel/api/news', upload.single("images"), (req, res, next) => {
 app.post('/panel/api/portfolio', upload.array("images"), (req, res, next) => {
   var parameters = req.body;
   var desc = parameters.portfolioDesc;
+  var enDesc = parameters.portfolioEnDesc;
   var title = parameters.portfolioTitle;
   var cat = parameters.selectedCategory;
   var subcat = parameters.selectedSubcat;
@@ -91,14 +92,15 @@ app.post('/panel/api/portfolio', upload.array("images"), (req, res, next) => {
   var largePhoto = String(Math.floor(Math.random() * (10000000 - 10000) + 10000));
 
   let query =
-  `INSERT INTO portfolio (img, largeImg, title, description, category, subcat, enTitle) VALUES (
+  `INSERT INTO portfolio (img, largeImg, title, description, category, subcat, enTitle, enDescription) VALUES (
     '${photo}.jpg',
     '${largePhoto}.jpg',
     '${title}',
     '${desc}',
     '${cat}',
     '${subcat}',
-    '${enTitle}'
+    '${enTitle}',
+    '${enDesc}'
   );`;
 
   db.query(query, (err, resp, fld) => {
