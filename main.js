@@ -182,7 +182,7 @@ app.post('/panel/api/addSubcat', upload.array("images"), (req, res, next) => {
   var secondPhoto = String(Math.floor(Math.random() * (10000000 - 10000) + 10000));
   var thirdPhoto = String(Math.floor(Math.random() * (10000000 - 10000) + 10000));
   var cat = parameters.selectedCategory.split(',');
-  sql = `INSERT INTO subcategories (subcat, en, category, enCategory, description, photos, header, enDescription) VALUES (
+  sql = `INSERT INTO subcategories (subcat, en, category, enCategory, description, photos, header, enDescription, link) VALUES (
     '${parameters.faName}',
     '${parameters.enName}',
     '${cat[1]}',
@@ -190,7 +190,8 @@ app.post('/panel/api/addSubcat', upload.array("images"), (req, res, next) => {
     '${parameters.description}',
     '${firstPhoto}.jpg,${secondPhoto}.jpg,${thirdPhoto}.jpg',
     '${header}.jpg',
-    '${parameters.enDescription}'
+    '${parameters.enDescription}',
+    '${parameters.link}'
   )`;
 
   db.query(sql, (err, resp, fld) => {

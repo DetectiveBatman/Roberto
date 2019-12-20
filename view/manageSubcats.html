@@ -13,9 +13,9 @@
 
     <script src="/panel/lib/js/jquery-2.1.1.js"></script>
   </head>
-  <body>
+  <body style="overflow: scroll;">
     <!-- Right Menu -->
-    <div id="menu">
+    <div id="menu" style="position: fixed; top: 0; right: 0;">
       <a id="menu-logo" href="/">
         <div>
           <img src="/panel/lib/assets/Logo.png">
@@ -82,7 +82,7 @@
     </div>
 
 
-    <div id="top-menu">
+    <div id="top-menu" style="float: left; width: 100%;">
 
       <ul>
         <li>
@@ -94,7 +94,7 @@
 
     </div>
 
-    <div id="container">
+    <div id="container" style="float: left;">
       <div id="right-category">
 
       </div>
@@ -105,7 +105,7 @@
           <input id="enCat" type="text" placeholder="نام زیردسته به انگلیسی" name="enName">
           <textarea style="resize:vertical;" name="description" id="news-text" placeholder="توضیحات زیردسته را وارد نمایید..."></textarea>
           <textarea style="resize:vertical;" name="enDescription" id="news-text" placeholder="توضیحات زیردسته را به انگلیسی وارد نمایید..."></textarea>
-
+          <input type="text" placeholder="اگر لینک خاصی هست اینجا بزارید..." name="link">
           <div class="img-upload-wrapper">
             <button class="img-upload-button">انتخاب عکس هدر</button>
             <input type="file" name="images">
