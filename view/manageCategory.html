@@ -95,40 +95,38 @@
     </div>
 
     <div id="container">
-      <div id="right-category">
-
-      </div>
-
-      <div id="add-category">
         <form action="/panel/api/addCategory" method="post" enctype="multipart/form-data">
-          <input id="faCat" type="text" placeholder="نام دسته به فارسی" name="faName">
-          <input id="enCat" type="text" placeholder="نام دسته به انگلیسی" name="enName">
-          <textarea style="resize:vertical;" name="description" id="news-text" placeholder="توضیحات دسته را وارد نمایید..."></textarea>
-          <textarea style="resize:vertical;" name="enDescription" id="news-text" placeholder="توضیحات دسته را به انگلیسی وارد نمایید..."></textarea>
-
-          <div class="img-upload-wrapper">
-            <button class="img-upload-button">انتخاب عکس هدر</button>
-            <input type="file" name="images">
+          <div id="right-part">
+            <input id="faCat" type="text" placeholder="نام دسته به فارسی" name="faName">
+            <input id="enCat" type="text" placeholder="نام دسته به انگلیسی" name="enName">
+            <textarea style="resize:vertical;" name="description" id="description" placeholder="توضیحات دسته را وارد نمایید..."></textarea>
+            <textarea style="resize:vertical;" name="enDescription" id="enDescription" placeholder="توضیحات دسته را به انگلیسی وارد نمایید..."></textarea>
           </div>
 
-          <div class="img-upload-wrapper">
-            <button class="img-upload-button">انتخاب عکس اول</button>
-            <input type="file" name="images">
-          </div>
+          <div id="left-part">
+            <div class="img-upload-wrapper">
+              <button class="img-upload-button">انتخاب عکس هدر</button>
+              <input type="file" name="images">
+            </div>
 
-          <div class="img-upload-wrapper">
-            <button class="img-upload-button">انتخاب عکس دوم</button>
-            <input type="file" name="images">
-          </div>
+            <div class="img-upload-wrapper">
+              <button class="img-upload-button">انتخاب عکس اول</button>
+              <input type="file" name="images">
+            </div>
 
-          <div class="img-upload-wrapper">
-            <button class="img-upload-button">انتخاب عکس سوم</button>
-            <input type="file" name="images">
-          </div>
+            <div class="img-upload-wrapper">
+              <button class="img-upload-button">انتخاب عکس دوم</button>
+              <input type="file" name="images">
+            </div>
 
-          <input type="submit" value="تایید">
+            <div class="img-upload-wrapper">
+              <button class="img-upload-button">انتخاب عکس سوم</button>
+              <input type="file" name="images">
+            </div>
+
+            <input type="submit" value="تایید">
+          </div>
         </form>
-      </div>
     </div>
 
     <script src="/panel/lib/js/manageCategory.js"></script>

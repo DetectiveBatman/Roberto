@@ -1,19 +1,17 @@
-#right-category {
+#right-part {
   float: right;
-  width: 70%;
-  margin: 20px 30px;
-  background: #FFF;
-  border: 1px solid #ddd;
+  width: 60%;
+  margin-right: 5%;
+  margin-left: 5%;
 }
 
-#add-category {
+#left-part {
   float: left;
-  max-width: 20%;
-  margin: 20px 30px;
-  margin-right: 0;
+  width: 25%;
+  margin-left: 5%;
+  margin-top: 5px;
 }
-
-#add-category input {
+#container input {
   float: right;
   direction: rtl;
   border: 1px solid #ddd !important;
@@ -23,10 +21,24 @@
   margin: 5px 0;
 }
 
-#add-category input[type=submit] {
+#container input[type=submit] {
   width: 100%;
 }
 
-#add-category input[type=submit]:hover {
+#container input[type=submit]:hover {
   cursor: pointer;
+}
+
+#description, #enDescription, #faCat, #enCat, #link {
+  margin-top: 20px;
+  float: right;
+  width: 100% !important;
+  direction: rtl;
+  padding: 10px;
+  resize: vertical;
+  border: 1px solid #ddd !important;
+}
+
+#description, #enDescription {
+  min-height: 150px;
 }
