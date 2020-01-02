@@ -60,12 +60,13 @@ app.post('/panel/api/news', upload.single("images"), (req, res, next) => {
   const randomName = String(Math.floor(Math.random() * (10000000 - 10000) + 10000)); // The file's address
 
   let query =
-  `INSERT INTO news (title, photo, text, date, type) VALUES (
+  `INSERT INTO news (title, photo, text, date, type, enTitle) VALUES (
     '${parameters.newsTitle}',
     '${randomName}.jpg',
     '${parameters.newsText}',
     '${d}',
-    '${parameters.type}'
+    '${parameters.type}',
+    '${parameters.newsEnTitle}'
   );`
 
   db.query(query, (err, resp, fld) => {
