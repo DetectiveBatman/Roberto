@@ -29,10 +29,9 @@ input[name='title'] {
   height: 20px;
 }
 
-#news-text {
+.news-text {
   margin-top: 20px;
   float: right;
-  height: calc(100% - 60px);
   width: calc(100% - 20px);
   direction: rtl;
   padding: 10px;
