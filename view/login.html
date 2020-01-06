@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>پنل</title>
+    <link rel="icon" href="/panel/favicon" type="image/x-icon">
+    <script
+      src="https://code.jquery.com/jquery-2.2.4.min.js"
+      integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+      crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <style>
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      display: flex;
+    }
+
+    div {
+      margin: 0 auto;
+      flex-direction: column;
+      display: flex;
+    }
+
+    input, button {
+      margin: 20px 0;
+      width: 200px;
+      border-radius: 3px;
+      padding: 10px 0 !important;
+      border: 1px solid #ccc;
+      width: 100%;
+      direction: rtl;
+    }
+
+    </style>
+    <div>
+        <input id="username" name="username" type="text" placeholder="یوزرنیم شما">
+        <input id="pass" name="pass" type="text" placeholder="پسورد">
+        <button id="submit">تایید</button>
+    </div>
+    <script>
+      $(document).ready(() => {
+        $("#submit").click(() => {
+          var username = $("#username").val();
+          var pass = $("#pass").val();
+          if (username != '' && pass != '') {
+            $.post('/panel/api/login', {username: username, pass: pass}, (resp) => {
+              if (resp.ok == 'true') {
+                location.reload();
+              } else {
+                alert('اشتباه بود');
+              }
+            });
+          } else {
+            alert('همه‌ی فیلدها را پر نمایید');
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

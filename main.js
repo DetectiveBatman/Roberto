@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const express    = require('express');
 const multer     = require('multer');
@@ -11,10 +12,38 @@ const args = process.argv.splice(2);
 const port = args[0] || 8546;
 const app  = express();
 
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(bodyParser.raw());
+app.use(cookieParser());
+
 
 const upload = multer({
   dest: "../ComaStudio/lib/assets"
+});
+
+app.post('/panel/api/login', (req, res, next) => {
+  var param = req.body;
+  var username = req.body.username;
+  var pass = req.body.pass;
+  if (username == 'mimdari' && pass == 'dari203026800') {
+    res.cookie('loggedIn', 'true', {maxAge: 10800000});
+    res.json({
+      ok: 'true'
+    });
+  } else {
+    res.json({
+      ok: 'false'
+    });
+  }
+});
+
+app.use((req, res, next) => {
+  if (req.cookies.loggedIn == undefined) {
+    res.sendFile(__dirname + '/view/login.html');
+  } else if (req.cookies.loggedIn == 'true') {
+    next();
+  }
 });
 
 app.get('/panel', (req, res, next) => {
