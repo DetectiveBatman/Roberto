@@ -1,0 +1,35 @@
+#container {
+  position: relative;
+  direction: rtl;
+}
+
+#categories-ul {
+  top: 20px;
+  left: 20px;
+  right: 20px;
+  background: #FFF;
+  float: right;
+  position: absolute;
+  padding: 0;
+}
+
+#categories-ul li {
+  list-style: none;
+  width: 200px;
+  margin: 20px;
+  float: right;
+}
+
+#categories-ul li i {
+  float: left;
+  height: 100%;
+  font-size: 16px;
+  color: #2f3a4c;
+  transition: color 1s;
+  display: block;
+}
+
+#categories-ul li i:hover {
+  cursor: pointer;
+  color: #44bfe9;
+}

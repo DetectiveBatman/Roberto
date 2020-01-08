@@ -5,8 +5,9 @@
     <link rel="icon" href="/panel/favicon" type="image/x-icon">
 
     <link rel="stylesheet" type="text/css" href="/panel/lib/css/main.css">
-    <link rel="stylesheet" type="text/css" href="/panel/lib/css/dashboard.css">
+    <link rel="stylesheet" type="text/css" href="/panel/lib/css/deleteCategory.css">
     <link href="/panel/lib/css/all.min.css" rel="stylesheet">
+    <script src="/panel/lib/js/jquery-2.1.1.js"></script>
   </head>
   <body>
     <!-- Right Menu -->
@@ -111,72 +112,11 @@
     </div>
 
     <div id="container">
-      <!-- For customizing the color of each .dashboard-items
-           you should append the code below at the bottom of
-           dashboard.css
-           Styles:
-            #ID of the dashboard-items-icon element {
-              background: NEW COLOR;
-            }
-            #ID of the dashboard-items-data-headline element {
-              color: NEW COLOR;
-            }
-      -->
 
-      <div id="dashboard-items-container">
-        <div class="dashboard-items">
-
-          <div class="dashboard-items-icon">
-            <i class="far fa-images fa-lg"></i>
-          </div>
-
-          <div class="dashboard-items-data">
-            <span class="dashboard-items-data-headline">تعداد پست‌ها</span>
-            <span class="dashboard-items-data-count">57</span>
-          </div>
-
-        </div>
-
-        <div class="dashboard-items">
-
-          <div class="dashboard-items-icon" id="item-2">
-            <i class="far fa-envelope fa-lg"></i>
-          </div>
-
-          <div class="dashboard-items-data">
-            <span class="dashboard-items-data-headline" id="item-2-headline">پیام‌ها</span>
-            <span class="dashboard-items-data-count">134</span>
-          </div>
-
-        </div>
-
-        <div class="dashboard-items">
-
-          <div class="dashboard-items-icon" id="item-3">
-            <i class="far fa-eye fa-lg"></i>
-          </div>
-
-          <div class="dashboard-items-data">
-            <span class="dashboard-items-data-headline" id="item-3-headline">بازدیدهای امروز</span>
-            <span class="dashboard-items-data-count">5,489</span>
-          </div>
-
-        </div>
-
-        <div class="dashboard-items">
-
-          <div class="dashboard-items-icon" id="item-4">
-            <i class="far fa-user-circle fa-lg"></i>
-          </div>
-
-          <div class="dashboard-items-data">
-            <span class="dashboard-items-data-headline" id="item-4-headline">بازدیدکنندگان امروز</span>
-            <span class="dashboard-items-data-count">3,657</span>
-          </div>
-
-        </div>
-      </div>
+      <ul id="categories-ul"></ul>
 
     </div>
+
+    <script src="/panel/lib/js/deleteCategory.js"></script>
   </body>
 </html>

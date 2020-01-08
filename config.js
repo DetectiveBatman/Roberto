@@ -5,7 +5,8 @@ var db = mysql.createConnection({
   host     : 'localhost',
   user     : 'root',
   password : 'root',
-  database : 'ComaStudio'
+  database : 'ComaStudio',
+  multipleStatements: true
 });
 
 db.connect(function(err) {

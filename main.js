@@ -74,6 +74,19 @@ app.get('/panel/messages', (req, res, next) => {
   res.sendFile(__dirname + '/view/messages.html');
 });
 
+app.get('/panel/deleteCategory', (req, res, next) => {
+  res.sendFile(__dirname + '/view/deleteCategory.html');
+});
+
+
+app.get('/panel/deleteSubcat', (req, res, next) => {
+  res.sendFile(__dirname + '/view/deleteSubcat.html');
+});
+
+
+app.get('/panel/deletePortfolio', (req, res, next) => {
+  res.sendFile(__dirname + '/view/deletePortfolio.html');
+});
 
 app.get('/panel/lib/*', (req, res, next) => {
   let path = __dirname + req.url.substr(6);
