@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>پنل</title>
+    <link rel="icon" href="/panel/favicon" type="image/x-icon">
+
+    <link rel="stylesheet" type="text/css" href="/panel/lib/css/main.css">
+    <link rel="stylesheet" type="text/css" href="/panel/lib/css/deleteCategory.css">
+    <link href="/panel/lib/css/all.min.css" rel="stylesheet">
+    <script src="/panel/lib/js/jquery-2.1.1.js"></script>
+  </head>
+  <body>
+    <!-- Right Menu -->
+    <div id="menu">
+      <a id="menu-logo" href="/">
+        <div>
+          <img src="/panel/lib/assets/Logo.png">
+        </div>
+        <div id="span-parent">
+          <span>کما استودیو</span>
+        </div>
+      </a>
+      <!-- Menu List -->
+      <div id="menu-div">
+        <ul id="menu-ul">
+
+          <li class="menu-li">
+            <a class="menu-a" href="/panel">
+              <i class="fas fa-home"></i>
+              <span>داشبورد</span>
+            </a>
+          </li>
+
+          <li class="menu-li">
+            <a class="menu-a" href="/panel/newsPosting">
+              <i class="fas fa-pen-alt"></i>
+              <span>خبرگزاری</span>
+            </a>
+          </li>
+
+          <li class="menu-li">
+            <a class="menu-a" href="/panel/addPortfolio">
+              <i class="fas fa-pen-alt"></i>
+              <span>افزودن نمونه‌کار</span>
+            </a>
+          </li>
+
+          <li class="menu-li">
+            <a class="menu-a" href="/panel/manageCategory">
+              <i class="fas fa-pen-alt"></i>
+              <span>مدیریت دسته‌ها</span>
+            </a>
+          </li>
+
+          <li class="menu-li">
+            <a class="menu-a" href="/panel/manageSubcats">
+              <i class="fas fa-pen-alt"></i>
+              <span>مدیریت زیردسته‌ها</span>
+            </a>
+          </li>
+
+          <li class="menu-li">
+            <a class="menu-a" href="/panel/messages">
+              <i class="fas fa-pen-alt"></i>
+              <span>مشاهده‌ی پیام‌ها</span>
+            </a>
+          </li>
+
+          <li class="menu-li">
+            <a class="menu-a" href="/panel/deleteCategory">
+              <i class="fas fa-pen-alt"></i>
+              <span>حذف دسته‌ها</span>
+            </a>
+          </li>
+
+          <li class="menu-li">
+            <a class="menu-a" href="/panel/deletePortfolio">
+              <i class="fas fa-pen-alt"></i>
+              <span>حذف نمونه‌کارها</span>
+            </a>
+          </li>
+
+          <li class="menu-li">
+            <a class="menu-a" href="/panel/deleteSubcat">
+              <i class="fas fa-pen-alt"></i>
+              <span>حذف زیردسته‌ها</span>
+            </a>
+          </li>
+
+          <li class="menu-li">
+            <a class="menu-a" href="/panel/deleteNews">
+              <i class="fas fa-pen-alt"></i>
+              <span>حذف اخبار</span>
+            </a>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+
+
+    <div id="top-menu">
+
+      <ul>
+        <li>
+          <a href="/panel/signout">
+            <i class="fas fa-sign-out-alt gray-icons"></i>
+          </a>
+        </li>
+      </ul>
+
+    </div>
+
+    <div id="container">
+
+      <ul id="categories-ul"></ul>
+
+    </div>
+
+    <script src="/panel/lib/js/deleteNews.js"></script>
+  </body>
+</html>

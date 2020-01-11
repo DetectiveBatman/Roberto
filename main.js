@@ -88,6 +88,10 @@ app.get('/panel/deletePortfolio', (req, res, next) => {
   res.sendFile(__dirname + '/view/deletePortfolio.html');
 });
 
+app.get('/panel/deleteNews', (req, res, next) => {
+  res.sendFile(__dirname + '/view/deleteNews.html');
+});
+
 app.get('/panel/lib/*', (req, res, next) => {
   let path = __dirname + req.url.substr(6);
   res.sendFile(path)
