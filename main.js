@@ -17,6 +17,14 @@ app.use(bodyParser.json());
 app.use(bodyParser.raw());
 app.use(cookieParser());
 
+function nl2br (str, is_xhtml) {
+    if (typeof str === 'undefined' || str === null) {
+        return '';
+    }
+    var breakTag = (is_xhtml || typeof is_xhtml === 'undefined') ? '<br />' : '<br />';
+    return (str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1' + breakTag + '$2');
+}
+
 
 const upload = multer({
   dest: "../ComaStudio/lib/assets"
@@ -101,7 +109,6 @@ app.post('/panel/api/news', upload.single("images"), (req, res, next) => {
   var parameters = req.body;
   let date       = new Date();
   let d          = `${date.getFullYear()}/${date.getMonth()}/${date.getDate()}`;
-
   const tempPath   = req.file.path;
   const randomName = String(Math.floor(Math.random() * (10000000 - 10000) + 10000)); // The file's address
 
@@ -109,11 +116,11 @@ app.post('/panel/api/news', upload.single("images"), (req, res, next) => {
   `INSERT INTO news (title, photo, text, date, type, enTitle, enText) VALUES (
     '${parameters.newsTitle}',
     '${randomName}.jpg',
-    '${parameters.newsText}',
+    '${nl2br(parameters.newsText)}',
     '${d}',
     '${parameters.type}',
     '${parameters.newsEnTitle}',
-    '${parameters.newsEnText}'
+    '${nl2br(parameters.newsEnText)}'
   );`
 
   db.query(query, (err, resp, fld) => {
@@ -144,11 +151,11 @@ app.post('/panel/api/portfolio', upload.array("images"), (req, res, next) => {
     '${photo}.jpg',
     '${largePhoto}.jpg',
     '${title}',
-    '${desc}',
+    '${nl2br(desc)}',
     '${cat}',
     '${subcat}',
     '${enTitle}',
-    '${enDesc}'
+    '${nl2br(enDesc)}'
   );`;
 
   db.query(query, (err, resp, fld) => {
@@ -189,10 +196,10 @@ app.post('/panel/api/addCategory', upload.array("images"), (req, res, next) => {
     'all',
     '${parameters.faName}',
     '${parameters.enName}',
-    '${parameters.description}',
+    '${nl2br(parameters.description)}',
     '${firstPhoto}.jpg,${secondPhoto}.jpg,${thirdPhoto}.jpg',
     '${header}.jpg',
-    '${parameters.enDescription}'
+    '${nl2br(parameters.enDescription)}'
   )`;
 
   db.query(sql, (err, resp, fld) => {
@@ -235,10 +242,10 @@ app.post('/panel/api/addSubcat', upload.array("images"), (req, res, next) => {
     '${parameters.enName}',
     '${cat[1]}',
     '${cat[0]}',
-    '${parameters.description}',
+    '${nl2br(parameters.description)}',
     '${firstPhoto}.jpg,${secondPhoto}.jpg,${thirdPhoto}.jpg',
     '${header}.jpg',
-    '${parameters.enDescription}',
+    '${nl2br(parameters.enDescription)}',
     '${parameters.link}'
   )`;
 
