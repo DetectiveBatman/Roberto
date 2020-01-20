@@ -5,8 +5,12 @@
     <link rel="icon" href="/panel/favicon" type="image/x-icon">
 
     <link rel="stylesheet" type="text/css" href="/panel/lib/css/main.css">
-    <link rel="stylesheet" type="text/css" href="/panel/lib/css/deleteCategory.css">
+    <link rel="stylesheet" type="text/css" href="/panel/lib/css/newsPosting.css">
+    <link rel="stylesheet" type="text/css" href="/panel/lib/css/addPortfolio.css">
+    <link rel="stylesheet" type="text/css" href="/panel/lib/css/manageCategory.css">
+
     <link href="/panel/lib/css/all.min.css" rel="stylesheet">
+
     <script src="/panel/lib/js/jquery-2.1.1.js"></script>
   </head>
   <body>
@@ -119,11 +123,19 @@
     </div>
 
     <div id="container">
+        <form action="/panel/api/backPhoto" method="post" enctype="multipart/form-data">
 
-      <ul id="categories-ul"></ul>
+          <div class="img-upload-wrapper">
+            <button class="img-upload-button">انتخاب عکس جدید</button>
+            <input type="file" name="images">
+          </div>
 
+          <input type="submit" value="تایید">
+
+        </form>
     </div>
 
-    <script src="/panel/lib/js/deleteCategory.js"></script>
+    <script src="/panel/lib/js/manageCategory.js"></script>
+
   </body>
 </html>

@@ -25,6 +25,14 @@ function nl2br (str, is_xhtml) {
     return (str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1' + breakTag + '$2');
 }
 
+function replaceContents(file, replacement, cb) {
+
+  fs.readFile(replacement, (err, contents) => {
+    if (err) return cb(err);
+    fs.writeFile(file, contents, cb);
+  });
+
+}
 
 const upload = multer({
   dest: "../ComaStudio/lib/assets"
@@ -98,6 +106,10 @@ app.get('/panel/deletePortfolio', (req, res, next) => {
 
 app.get('/panel/deleteNews', (req, res, next) => {
   res.sendFile(__dirname + '/view/deleteNews.html');
+});
+
+app.get('/panel/changeBackPhoto', (req, res, next) => {
+  res.sendFile(__dirname + '/view/backPhoto.html');
 });
 
 app.get('/panel/lib/*', (req, res, next) => {
@@ -276,7 +288,16 @@ app.post('/panel/api/addSubcat', upload.array("images"), (req, res, next) => {
 
 });
 
+app.post('/panel/api/backPhoto', upload.single("images"), (req, res, next) => {
+  const tempPath   = req.file.path;
+  const imgName = '../ComaStudio/lib/assets/backPhotoIndex.jpg';
 
+  replaceContents(imgName, tempPath, err => {
+    if (err) res.json({ok: false});
+    res.sendFile(__dirname + '/view/dashboard.html');
+  });
+
+});
 
 
 
