@@ -123,10 +123,21 @@
     </div>
 
     <div id="container">
-        <form action="/panel/api/backPhoto" method="post" enctype="multipart/form-data">
+        <form style="height: 30%; margin-top: 20px;" action="/panel/api/backPhoto" method="post" enctype="multipart/form-data">
 
           <div class="img-upload-wrapper">
             <button class="img-upload-button">انتخاب عکس جدید</button>
+            <input type="file" name="images">
+          </div>
+
+          <input type="submit" value="تایید">
+
+        </form>
+
+        <form style="height: 30%;" action="/panel/api/topPhoto" method="post" enctype="multipart/form-data">
+
+          <div class="img-upload-wrapper">
+            <button class="img-upload-button">انتخاب عکس جدید بالا</button>
             <input type="file" name="images">
           </div>
 

@@ -299,6 +299,17 @@ app.post('/panel/api/backPhoto', upload.single("images"), (req, res, next) => {
 
 });
 
+app.post('/panel/api/topPhoto', upload.single("images"), (req, res, next) => {
+  const tempPath   = req.file.path;
+  const imgName = '../ComaStudio/lib/assets/01.jpg';
+
+  replaceContents(imgName, tempPath, err => {
+    if (err) res.json({ok: false});
+    res.sendFile(__dirname + '/view/dashboard.html');
+  });
+
+});
+
 
 
 app.listen(port, () => {
