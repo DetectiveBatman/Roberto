@@ -1,7 +1,7 @@
 const chalk = require('chalk');
 const mysql = require('mysql');
 
-var db = mysql.createConnection({
+var connection = mysql.createConnection({
   host     : 'localhost',
   user     : 'root',
   password : 'root',
@@ -9,13 +9,18 @@ var db = mysql.createConnection({
   multipleStatements: true
 });
 
-db.connect(function(err) {
-  if (err) {
-    console.error(chalk.red('error connecting to database [ComaStudio]: ') + chalk.green(err.stack));
-    return;
-  }
-});
+function handleDisconnect(myconnection) {
+  myconnection.on('error', function(err) {
+    console.log('Re-connecting lost connection');
+    connection.destroy();
+    connection = mysql.createConnection(config.mysql);
+    handleDisconnect(connection);
+    connection.connect();
+  });
+}
+
+handleDisconnect(connection);
 
 module.exports = {
-  db: db
+  db: connection
 }
