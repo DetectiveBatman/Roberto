@@ -5,9 +5,8 @@
     <link rel="icon" href="/panel/favicon" type="image/x-icon">
 
     <link rel="stylesheet" type="text/css" href="/panel/lib/css/main.css">
-    <link rel="stylesheet" type="text/css" href="/panel/lib/css/deleteCategory.css">
+    <link rel="stylesheet" type="text/css" href="/panel/lib/css/dashboard.css">
     <link href="/panel/lib/css/all.min.css" rel="stylesheet">
-    <script src="/panel/lib/js/jquery-2.1.1.js"></script>
   </head>
   <body>
     <!-- Right Menu -->
@@ -126,11 +125,40 @@
     </div>
 
     <div id="container">
+      <!-- For customizing the color of each .dashboard-items
+           you should append the code below at the bottom of
+           dashboard.css
+           Styles:
+            #ID of the dashboard-items-icon element {
+              background: NEW COLOR;
+            }
+            #ID of the dashboard-items-data-headline element {
+              color: NEW COLOR;
+            }
+      -->
 
-      <ul id="categories-ul"></ul>
+      <div id="dashboard-items-container" style="float: right; width: 100%; display: flex;">
+        <ul style="float: right; margin: 20px auto; text-align: center;">
+          <li style="list-style: none; direction: rtl; margin: 20px; border-bottom: 1px #000 solid;">
+            <a style="text-decoration: none; color: #000;" href="/panel/editNews">ویرایش خبر</a>
+          </li>
+
+          <li style="list-style: none; direction: rtl; margin: 20px; border-bottom: 1px #000 solid;">
+            <a style="text-decoration: none; color: #000;" href="/panel/editSubcat">ویرایش زیردسته</a>
+          </li>
+
+
+          <li style="list-style: none; direction: rtl; margin: 20px; border-bottom: 1px #000 solid;">
+            <a style="text-decoration: none; color: #000;" href="/panel/editCategory">ویرایش دسته</a>
+          </li>
+
+          <li style="list-style: none; direction: rtl; margin: 20px; border-bottom: 1px #000 solid;">
+            <a style="text-decoration: none; color: #000;" href="/panel/editPortfolio">ویرایش نمونه‌کار</a>
+          </li>
+        </ul>
+
+      </div>
 
     </div>
-
-    <script src="/panel/lib/js/deleteCategory.js"></script>
   </body>
 </html>

@@ -112,6 +112,14 @@ app.get('/panel/changeBackPhoto', (req, res, next) => {
   res.sendFile(__dirname + '/view/backPhoto.html');
 });
 
+app.get('/panel/editNews', (req, res, next) => {
+  res.sendFile(__dirname + '/view/editNews.html');
+});
+
+app.get('/panel/edits', (req, res, next) => {
+  res.sendFile(__dirname + '/view/edits.html');
+});
+
 app.get('/panel/lib/*', (req, res, next) => {
   let path = __dirname + req.url.substr(6);
   res.sendFile(path)
@@ -308,6 +316,53 @@ app.post('/panel/api/topPhoto', upload.single("images"), (req, res, next) => {
     res.sendFile(__dirname + '/view/dashboard.html');
   });
 
+});
+
+app.post('/panel/api/editNews', upload.single("images"), (req, res, next) => {
+  let params = req.body;
+  let id = params.selectedCategory;
+
+  if (params.newsTitle != '') {
+    let query = `UPDATE news SET title = '${params.newsTitle}' WHERE id='${id}'`;
+    db.query(query, (err, resp, fld) => {
+      if (err) console.log(err);
+    });
+  }
+
+  if (params.newsEnTitle != '') {
+    let query = `UPDATE news SET enTitle = '${params.newsEnTitle}' WHERE id='${id}'`;
+    db.query(query, (err, resp, fld) => {
+      if (err) console.log(err);
+    });
+  }
+
+  if (params.newsText != '') {
+    let query = `UPDATE news SET text = '${params.newsText}' WHERE id='${id}'`;
+    db.query(query, (err, resp, fld) => {
+      if (err) console.log(err);
+    });
+  }
+
+  if (params.newsEnText != '') {
+    let query = `UPDATE news SET enText = '${params.newsEnText}' WHERE id='${id}'`;
+    db.query(query, (err, resp, fld) => {
+      if (err) console.log(err);
+    });
+  }
+
+  if (req.file != undefined) {
+    const tempPath   = req.file.path;
+    db.query(`SELECT * FROM news WHERE id='${id}'`, (err, resp, fld) =>{
+      if (err) console.log(err);
+      let pic = resp[0].photo;
+      const imgName = `../ComaStudio/lib/assets/${pic}`;
+
+      replaceContents(imgName, tempPath, err => {
+        if (err) res.json({ok: false});
+      });
+    });
+  }
+  res.sendFile(__dirname + '/view/dashboard.html');
 });
 
 

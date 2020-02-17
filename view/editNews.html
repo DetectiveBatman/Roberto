@@ -5,9 +5,8 @@
     <link rel="icon" href="/panel/favicon" type="image/x-icon">
 
     <link rel="stylesheet" type="text/css" href="/panel/lib/css/main.css">
-    <link rel="stylesheet" type="text/css" href="/panel/lib/css/deleteCategory.css">
+    <link rel="stylesheet" type="text/css" href="/panel/lib/css/newsPosting.css">
     <link href="/panel/lib/css/all.min.css" rel="stylesheet">
-    <script src="/panel/lib/js/jquery-2.1.1.js"></script>
   </head>
   <body>
     <!-- Right Menu -->
@@ -126,11 +125,33 @@
     </div>
 
     <div id="container">
+      <form action="/panel/api/editNews" method="post" enctype="multipart/form-data">
 
-      <ul id="categories-ul"></ul>
+        <div id="text-inputs">
+          <input type="text" name="newsTitle" placeholder="عنوان خبر را اینجا وارد کنید">
+          <input type="text" name="newsEnTitle" placeholder="عنوان خبر را به انگلیسی وارد کنید">
+          <textarea style="resize:vertical;" name="newsText" class="news-text" placeholder="متن خبر را اینجا وارد کنید..."></textarea>
+          <textarea style="resize:vertical;" name="newsEnText" class="news-text" placeholder="متن خبر را به انگلیسی وارد کنید"></textarea>
+        </div>
 
+        <div id="left-inputs">
+          <div class="img-upload-wrapper">
+            <button class="img-upload-button">انتخاب عکس</button>
+            <input type="file" name="images">
+          </div>
+
+          <div class="category-selection" id="cat-selection">
+            <ul>
+            </ul>
+          </div>
+
+          <input type="submit" name="newsSubmit" id="newsSub" value="انتشار">
+        </div>
+
+    </form>
     </div>
 
-    <script src="/panel/lib/js/deleteCategory.js"></script>
+    <script src="lib/js/jquery-2.1.1.js"></script>
+    <script src="lib/js/editNews.js"></script>
   </body>
 </html>
