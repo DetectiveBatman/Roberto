@@ -120,6 +120,18 @@ app.get('/panel/edits', (req, res, next) => {
   res.sendFile(__dirname + '/view/edits.html');
 });
 
+app.get('/panel/editCategory', (req, res, next) => {
+  res.sendFile(__dirname + '/view/editCategory.html');
+});
+
+app.get('/panel/editSubcat', (req, res, next) => {
+  res.sendFile(__dirname + '/view/editSubcat.html');
+});
+
+app.get('/panel/editPortfolio', (req, res, next) => {
+  res.sendFile(__dirname + '/view/editPortfolio.html');
+});
+
 app.get('/panel/lib/*', (req, res, next) => {
   let path = __dirname + req.url.substr(6);
   res.sendFile(path)
@@ -337,14 +349,14 @@ app.post('/panel/api/editNews', upload.single("images"), (req, res, next) => {
   }
 
   if (params.newsText != '') {
-    let query = `UPDATE news SET text = '${params.newsText}' WHERE id='${id}'`;
+    let query = `UPDATE news SET text = '${nl2br(params.newsText)}' WHERE id='${id}'`;
     db.query(query, (err, resp, fld) => {
       if (err) console.log(err);
     });
   }
 
   if (params.newsEnText != '') {
-    let query = `UPDATE news SET enText = '${params.newsEnText}' WHERE id='${id}'`;
+    let query = `UPDATE news SET enText = '${nl2br(params.newsEnText)}' WHERE id='${id}'`;
     db.query(query, (err, resp, fld) => {
       if (err) console.log(err);
     });
@@ -360,6 +372,102 @@ app.post('/panel/api/editNews', upload.single("images"), (req, res, next) => {
       replaceContents(imgName, tempPath, err => {
         if (err) res.json({ok: false});
       });
+    });
+  }
+  res.sendFile(__dirname + '/view/dashboard.html');
+});
+
+var multiUpload = upload.fields([{
+  name: 'header',
+  maxCount: 1
+  }, {
+  name: 'imagesFirst',
+  maxCount: 1
+  }, {
+  name: 'imagesSecond',
+  maxCount: 1
+  }, {
+  name: 'imagesThird',
+  maxCount: 1
+  }
+]);
+
+app.post('/panel/api/editCategory', multiUpload, (req, res, next) => {
+  let params = req.body;
+  let sent = params.selectedCategory.split(',');
+  let id = sent[0];
+  let en = sent[1];
+
+  if (params.faName != '') {
+    let query = `UPDATE categories SET fa = '${params.faName}' WHERE id='${id}'; UPDATE subcategories SET category = '${params.faName}' WHERE enCategory='${en}'`;
+    db.query(query, (err, resp, fld) => {
+      if (err) console.log(err);
+    });
+  }
+
+  if (params.enName != '') {
+    let query = `UPDATE categories SET en = '${params.enName}' WHERE id='${id}'; UPDATE subcategories SET enCategory = '${params.enName}' WHERE enCategory='${en}'`;
+    db.query(query, (err, resp, fld) => {
+      if (err) console.log(err);
+    });
+    let en = params.enName;
+  }
+
+  if (params.description != '') {
+    let query = `UPDATE subcategories SET description = '${nl2br(params.description)}' WHERE enCategory='${en}'`;
+    db.query(query, (err, resp, fld) => {
+      if (err) console.log(err);
+    });
+  }
+
+  if (params.enDescription != '') {
+    let query = `UPDATE subcategories SET enDescription = '${nl2br(params.enDescription)}' WHERE enCategory='${en}'`;
+    db.query(query, (err, resp, fld) => {
+      if (err) console.log(err);
+    });
+  }
+
+  if (req.files != undefined) {
+    db.query(`SELECT * FROM subcategories WHERE enCategory='${en}'`, (err, resp, fld) =>{
+      if (err) console.log(err);
+      let pics = resp[0].photos.split(',');
+      let headerPic = resp[0].header;
+      let tempPath   = {};
+
+      if (req.files['imagesFirst'] != undefined) {
+        tempPath.one = req.files['imagesFirst'][0].path;
+        let imgName = `../ComaStudio/lib/assets/${pics[0]}`;
+        replaceContents(imgName, tempPath.one, err => {
+          if (err) res.json({ok: false});
+        });
+      }
+
+      if (req.files['imagesSecond'] != undefined) {
+        tempPath.two = req.files['imagesSecond'][0].path;
+        let imgName = `../ComaStudio/lib/assets/${pics[1]}`;
+        replaceContents(imgName, tempPath.two, err => {
+          if (err) res.json({ok: false});
+        });
+      }
+
+      if (req.files['imagesThird'] != undefined) {
+        tempPath.three = req.files['imagesThird'][0].path;
+        let imgName = `../ComaStudio/lib/assets/${pics[2]}`;
+        replaceContents(imgName, tempPath.three, err => {
+          if (err) res.json({ok: false});
+        });
+
+      }
+
+      if (req.files['header'] != undefined) {
+
+        tempPath.zero = req.files['header'][0].path;
+        let imgName = `../ComaStudio/lib/assets/${headerPic}`;
+        replaceContents(imgName, tempPath.zero, err => {
+          if (err) res.json({ok: false});
+        });
+      }
+
     });
   }
   res.sendFile(__dirname + '/view/dashboard.html');
