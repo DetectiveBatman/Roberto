@@ -474,6 +474,85 @@ app.post('/panel/api/editCategory', multiUpload, (req, res, next) => {
 });
 
 
+app.post('/panel/api/editSubcat', multiUpload, (req, res, next) => {
+  let params = req.body;
+  let id = params.selectedSubcat;
+
+  if (params.faName != '') {
+    let query = `UPDATE subcategories SET subcat = '${params.faName}' WHERE id='${id}'`;
+    db.query(query, (err, resp, fld) => {
+      if (err) console.log(err);
+    });
+  }
+
+  if (params.enName != '') {
+    let query = `UPDATE subcategories SET en = '${params.enName}' WHERE id='${id}'`;
+    db.query(query, (err, resp, fld) => {
+      if (err) console.log(err);
+    });
+    let en = params.enName;
+  }
+
+  if (params.description != '') {
+    let query = `UPDATE subcategories SET description = '${nl2br(params.description)}' WHERE id='${id}'`;
+    db.query(query, (err, resp, fld) => {
+      if (err) console.log(err);
+    });
+  }
+
+  if (params.enDescription != '') {
+    let query = `UPDATE subcategories SET enDescription = '${nl2br(params.enDescription)}' WHERE id='${en}'`;
+    db.query(query, (err, resp, fld) => {
+      if (err) console.log(err);
+    });
+  }
+
+  if (req.files != undefined) {
+    db.query(`SELECT * FROM subcategories WHERE id='${id}'`, (err, resp, fld) =>{
+      if (err) console.log(err);
+      let pics = resp[0].photos.split(',');
+      let headerPic = resp[0].header;
+      let tempPath   = {};
+
+      if (req.files['imagesFirst'] != undefined) {
+        tempPath.one = req.files['imagesFirst'][0].path;
+        let imgName = `../ComaStudio/lib/assets/${pics[0]}`;
+        replaceContents(imgName, tempPath.one, err => {
+          if (err) res.json({ok: false});
+        });
+      }
+
+      if (req.files['imagesSecond'] != undefined) {
+        tempPath.two = req.files['imagesSecond'][0].path;
+        let imgName = `../ComaStudio/lib/assets/${pics[1]}`;
+        replaceContents(imgName, tempPath.two, err => {
+          if (err) res.json({ok: false});
+        });
+      }
+
+      if (req.files['imagesThird'] != undefined) {
+        tempPath.three = req.files['imagesThird'][0].path;
+        let imgName = `../ComaStudio/lib/assets/${pics[2]}`;
+        replaceContents(imgName, tempPath.three, err => {
+          if (err) res.json({ok: false});
+        });
+
+      }
+
+      if (req.files['header'] != undefined) {
+
+        tempPath.zero = req.files['header'][0].path;
+        let imgName = `../ComaStudio/lib/assets/${headerPic}`;
+        replaceContents(imgName, tempPath.zero, err => {
+          if (err) res.json({ok: false});
+        });
+      }
+
+    });
+  }
+  res.sendFile(__dirname + '/view/dashboard.html');
+});
+
 
 app.listen(port, () => {
   console.log(chalk.green.bold('[*] ') + chalk.green.bold('Listening on port:') + ' ' + chalk.red.bold(port));
