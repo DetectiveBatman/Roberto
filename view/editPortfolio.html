@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>پنل</title>
+    <link rel="icon" href="/panel/favicon" type="image/x-icon">
+
+    <link rel="stylesheet" type="text/css" href="/panel/lib/css/main.css">
+    <link rel="stylesheet" type="text/css" href="/panel/lib/css/newsPosting.css">
+    <link rel="stylesheet" type="text/css" href="/panel/lib/css/addPortfolio.css">
+    <link href="/panel/lib/css/all.min.css" rel="stylesheet">
+
+    <script src="/panel/lib/js/jquery-2.1.1.js"></script>
+  </head>
+  <body>
+    <!-- Right Menu -->
+    <div id="menu">
+      <a id="menu-logo" href="/">
+        <div>
+          <img src="/panel/lib/assets/Logo.png">
+        </div>
+        <div id="span-parent">
+          <span>کما استودیو</span>
+        </div>
+      </a>
+      <!-- Menu List -->
+      <div id="menu-div">
+        <ul id="menu-ul">
+
+          <li class="menu-li">
+            <a class="menu-a" href="/panel">
+              <i class="fas fa-home"></i>
+              <span>داشبورد</span>
+            </a>
+          </li>
+
+          <li class="menu-li">
+            <a class="menu-a" href="/panel/newsPosting">
+              <i class="fas fa-pen-alt"></i>
+              <span>خبرگزاری</span>
+            </a>
+          </li>
+
+          <li class="menu-li">
+            <a class="menu-a" href="/panel/addPortfolio">
+              <i class="fas fa-pen-alt"></i>
+              <span>افزودن نمونه‌کار</span>
+            </a>
+          </li>
+
+          <li class="menu-li">
+            <a class="menu-a" href="/panel/manageCategory">
+              <i class="fas fa-pen-alt"></i>
+              <span>مدیریت دسته‌ها</span>
+            </a>
+          </li>
+
+          <li class="menu-li">
+            <a class="menu-a" href="/panel/manageSubcats">
+              <i class="fas fa-pen-alt"></i>
+              <span>مدیریت زیردسته‌ها</span>
+            </a>
+          </li>
+
+          <li class="menu-li">
+            <a class="menu-a" href="/panel/messages">
+              <i class="fas fa-pen-alt"></i>
+              <span>مشاهده‌ی پیام‌ها</span>
+            </a>
+          </li>
+
+          <li class="menu-li">
+            <a class="menu-a" href="/panel/deleteCategory">
+              <i class="fas fa-pen-alt"></i>
+              <span>حذف دسته‌ها</span>
+            </a>
+          </li>
+
+          <li class="menu-li">
+            <a class="menu-a" href="/panel/deletePortfolio">
+              <i class="fas fa-pen-alt"></i>
+              <span>حذف نمونه‌کارها</span>
+            </a>
+          </li>
+
+          <li class="menu-li">
+            <a class="menu-a" href="/panel/deleteSubcat">
+              <i class="fas fa-pen-alt"></i>
+              <span>حذف زیردسته‌ها</span>
+            </a>
+          </li>
+
+          <li class="menu-li">
+            <a class="menu-a" href="/panel/deleteNews">
+              <i class="fas fa-pen-alt"></i>
+              <span>حذف اخبار</span>
+            </a>
+          </li>
+
+          <li class="menu-li">
+            <a class="menu-a" href="/panel/changeBackPhoto">
+              <i class="fas fa-pen-alt"></i>
+              <span>تغییر عکس بکگراند</span>
+            </a>
+          </li>
+
+          <li class="menu-li">
+            <a class="menu-a" href="/panel/edits">
+              <i class="fas fa-pen-alt"></i>
+              <span>ویرایش</span>
+            </a>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+
+
+    <div id="top-menu">
+
+      <ul>
+        <li>
+          <a href="/panel/signout">
+            <i class="fas fa-sign-out-alt gray-icons"></i>
+          </a>
+        </li>
+      </ul>
+
+    </div>
+
+    <div id="container">
+      <form action="/panel/api/editPortfolio" method="post" enctype="multipart/form-data">
+
+        <div id="text-inputs">
+          <input type="text" name="portfolioTitle" placeholder="عنوان نمونه‌کار را اینجا وارد کنید...">
+          <input type="text" name="enTitle" placeholder="عنوان انگلیسی را وارد کنید...">
+          <textarea style="resize:vertical; min-height: 150px;" name="portfolioDesc" class="news-text" placeholder="توضیحات نمونه‌کار را اینجا وارد کنید..."></textarea>
+          <textarea style="resize:vertical; min-height: 150px;" name="portfolioEnDesc" class="news-text" placeholder="توضیحات نمونه‌کار را به انگلیسی اینجا وارد کنید..."></textarea>
+        </div>
+
+        <div id="left-inputs">
+
+          <!-- <div class="img-upload-wrapper">
+            <button class="img-upload-button">عکس هدر</button>
+            <input type="file" name="imagesHeader">
+          </div> -->
+
+          <div class="img-upload-wrapper">
+            <button class="img-upload-button">عکس نمونه‌کار</button>
+            <input type="file" name="images1">
+          </div>
+
+          <div class="category-selection" id="cat-selection">
+            <ul></ul>
+          </div>
+
+          <div class="category-selection" id="sub-selection">
+            <ul></ul>
+          </div>
+
+          <div class="category-selection" id="portfolio-selection">
+            <ul></ul>
+          </div>
+
+
+          <input type="submit" name="newsSubmit" id="newsSub" value="انتشار">
+        </div>
+
+    </form>
+    </div>
+
+    <script src="/panel/lib/js/editPortfolio.js"></script>
+
+  </body>
+</html>

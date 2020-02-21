@@ -554,6 +554,80 @@ app.post('/panel/api/editSubcat', multiUpload, (req, res, next) => {
 });
 
 
+var multiUpload2 = upload.fields([{
+  name: 'imagesHeader',
+  maxCount: 1
+  }, {
+  name: 'images1',
+  maxCount: 1
+  }
+]);
+
+
+app.post('/panel/api/editPortfolio', multiUpload2, (req, res, next) => {
+  let params = req.body;
+  let id = params.selectedPortfolio;
+
+  if (params.portfolioTitle != '') {
+    let query = `UPDATE portfolio SET title = '${params.portfolioTitle}' WHERE id='${id}'`;
+    db.query(query, (err, resp, fld) => {
+      if (err) console.log(err);
+    });
+  }
+
+  if (params.enTitle != '') {
+    let query = `UPDATE portfolio SET enTitle = '${params.enTitle}' WHERE id='${id}'`;
+    db.query(query, (err, resp, fld) => {
+      if (err) console.log(err);
+    });
+    let en = params.enName;
+  }
+
+  if (params.portfolioDesc != '') {
+    let query = `UPDATE portfolio SET description = '${nl2br(params.portfolioDesc)}' WHERE id='${id}'`;
+    db.query(query, (err, resp, fld) => {
+      if (err) console.log(err);
+    });
+  }
+
+  if (params.portfolioEnDesc != '') {
+    let query = `UPDATE portfolio SET enDescription = '${nl2br(params.portfolioEnDesc)}' WHERE id='${en}'`;
+    db.query(query, (err, resp, fld) => {
+      if (err) console.log(err);
+    });
+  }
+
+  if (req.files != undefined) {
+    db.query(`SELECT * FROM portfolio WHERE id='${id}'`, (err, resp, fld) =>{
+      if (err) console.log(err);
+      let pics = resp[0].largeImg;
+      let headerPic = resp[0].img;
+      let tempPath   = {};
+      console.log(headerPic);
+      if (req.files['images1'] != undefined) {
+        tempPath.one = req.files['images1'][0].path;
+        let imgName = `../ComaStudio/lib/assets/${pics}`;
+        replaceContents(imgName, tempPath.one, err => {
+          if (err) res.json({ok: false});
+        });
+      }
+
+      /** if (req.files['imagesHeader'] != undefined) {
+        console.log('in');
+        tempPath.two = req.files['imagesHeader'][0].path;
+        console.log(tempPath.two);
+        let imgName = `../ComaStudio/lib/assets/${headerPic}`;
+        console.log(imgName);
+        replaceContents(imgName, tempPath.two, err => {
+          if (err) res.json({ok: false});
+        });
+      } **/
+    });
+  }
+  res.sendFile(__dirname + '/view/dashboard.html');
+});
+
+
 app.listen(port, () => {
   console.log(chalk.green.bold('[*] ') + chalk.green.bold('Listening on port:') + ' ' + chalk.red.bold(port));
 });
