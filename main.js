@@ -139,6 +139,10 @@ app.get('/panel/addPodcast', (req, res, next) => {
   res.sendFile(__dirname + '/view/addPodcast.html');
 });
 
+app.get('/panel/addVideo', (req, res, next) => {
+  res.sendFile(__dirname + '/view/addVideo.html');
+});
+
 app.get('/panel/lib/*', (req, res, next) => {
   let path = __dirname + req.url.substr(6);
   res.sendFile(path)
@@ -664,6 +668,42 @@ app.post('/panel/api/addPodcast', (req, res, next) => {
     });
   }
 
+});
+
+app.post('/panel/api/videoUpload', (req, res, next) => {
+  let params = req.body;
+  let title = params.title;
+  let enTitle = params.enTitle;
+  let category = params.selectedCategory;
+  let subcat = params.selectedSubcat;
+  let youtube = params.youtube;
+  let aparat = params.aparat;
+
+  if (!req.files) {
+    res.send({
+      status: false,
+      message: 'فایلی آپلود نشده است.'
+    });
+  } else {
+    let video = req.files.video;
+
+    let query = `INSERT INTO portfolio (title, enTitle, largeImg, category, subcat, aparat, youtube) VALUES (
+      '${title}',
+      '${enTitle}',
+      '${video.name}',
+      '${category}',
+      '${subcat}',
+      '${aparat}',
+      '${youtube}'
+    )`;
+    db.query(query, (err, resp, fld) => {
+      if (err) console.log(err);
+
+      video.mv('../ComaStudio/lib/video/' + video.name);
+
+      res.sendFile(__dirname + '/view/dashboard.html');
+    });
+  }
 });
 
 
