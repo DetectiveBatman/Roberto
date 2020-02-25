@@ -1,21 +1,24 @@
 #!/usr/bin/env node
 
+const fileUpload   = require('express-fileupload');
 const cookieParser = require('cookie-parser');
-const bodyParser = require('body-parser');
-const express    = require('express');
-const multer     = require('multer');
-const chalk      = require('chalk');
-const fs         = require('fs');
-const {db}       = require('./config.js');
-
-const args = process.argv.splice(2);
-const port = args[0] || 8546;
-const app  = express();
+const bodyParser   = require('body-parser');
+const express      = require('express');
+const multer       = require('multer');
+const chalk        = require('chalk');
+const fs           = require('fs');
+const {db}         = require('./config.js');
+const args         = process.argv.splice(2);
+const port         = args[0] || 8546;
+const app          = express();
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(bodyParser.raw());
 app.use(cookieParser());
+app.use(fileUpload({
+    createParentPath: true
+}));
 
 function nl2br (str, is_xhtml) {
     if (typeof str === 'undefined' || str === null) {
@@ -130,6 +133,10 @@ app.get('/panel/editSubcat', (req, res, next) => {
 
 app.get('/panel/editPortfolio', (req, res, next) => {
   res.sendFile(__dirname + '/view/editPortfolio.html');
+});
+
+app.get('/panel/addPodcast', (req, res, next) => {
+  res.sendFile(__dirname + '/view/addPodcast.html');
 });
 
 app.get('/panel/lib/*', (req, res, next) => {
@@ -603,7 +610,6 @@ app.post('/panel/api/editPortfolio', multiUpload2, (req, res, next) => {
       let pics = resp[0].largeImg;
       let headerPic = resp[0].img;
       let tempPath   = {};
-      console.log(headerPic);
       if (req.files['images1'] != undefined) {
         tempPath.one = req.files['images1'][0].path;
         let imgName = `../ComaStudio/lib/assets/${pics}`;
@@ -625,6 +631,39 @@ app.post('/panel/api/editPortfolio', multiUpload2, (req, res, next) => {
     });
   }
   res.sendFile(__dirname + '/view/dashboard.html');
+});
+
+app.post('/panel/api/addPodcast', (req, res, next) => {
+  let params = req.body;
+  let title = params.title;
+  let enTitle = params.enTitle;
+  let description = params.description;
+  let enDescription = params.enDescription;
+
+  if (!req.files) {
+    res.send({
+      status: false,
+      message: 'فایلی آپلود نشده است.'
+    });
+  } else {
+    let podcast = req.files.podcast;
+
+    let query = `INSERT INTO podcast (title, enTitle, description, enDescription, file) VALUES (
+      '${title}',
+      '${enTitle}',
+      '${description}',
+      '${enDescription}',
+      '${podcast.name}'
+    )`;
+    db.query(query, (err, resp, fld) => {
+      if (err) console.log(err);
+
+      podcast.mv('../ComaStudio/lib/radio/' + podcast.name);
+
+      res.sendFile(__dirname + '/view/dashboard.html');
+    });
+  }
+
 });
 
 

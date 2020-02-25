@@ -142,47 +142,27 @@
     </div>
 
     <div id="container">
-      <form action="/panel/api/editPortfolio" method="post" enctype="multipart/form-data">
+      <form action="/panel/api/addPodcast" method="post" enctype="multipart/form-data">
 
         <div id="text-inputs">
-          <input type="text" name="portfolioTitle" placeholder="عنوان نمونه‌کار را اینجا وارد کنید...">
+          <input type="text" name="title" placeholder="عنوان فارسی را وارد کنید...">
           <input type="text" name="enTitle" placeholder="عنوان انگلیسی را وارد کنید...">
-          <textarea style="resize:vertical; min-height: 150px;" name="portfolioDesc" class="news-text" placeholder="توضیحات نمونه‌کار را اینجا وارد کنید..."></textarea>
-          <textarea style="resize:vertical; min-height: 150px;" name="portfolioEnDesc" class="news-text" placeholder="توضیحات نمونه‌کار را به انگلیسی اینجا وارد کنید..."></textarea>
+          <textarea style="resize:vertical; min-height: 150px;" name="description" class="news-text" placeholder="توضیح یک خطی فارسی را وارد کنید..."></textarea>
+          <textarea style="resize:vertical; min-height: 150px;" name="enDescription" class="news-text" placeholder="توضیح یک خطی انگلیسی را وارد کنید..."></textarea>
         </div>
 
         <div id="left-inputs">
 
-          <!-- <div class="img-upload-wrapper">
-            <button class="img-upload-button">عکس هدر</button>
-            <input type="file" name="imagesHeader">
-          </div> -->
-
           <div class="img-upload-wrapper">
-            <button class="img-upload-button">عکس نمونه‌کار</button>
-            <input type="file" name="images1">
+            <button class="img-upload-button">انتخاب فایل پادکست</button>
+            <input type="file" name="podcast">
           </div>
-
-          <div class="category-selection" id="cat-selection">
-            <ul></ul>
-          </div>
-
-          <div class="category-selection" id="sub-selection">
-            <ul></ul>
-          </div>
-
-          <div class="category-selection" id="portfolio-selection">
-            <ul></ul>
-          </div>
-
 
           <input type="submit" name="newsSubmit" id="newsSub" value="انتشار">
         </div>
 
     </form>
     </div>
-
-    <script src="/panel/lib/js/editPortfolio.js"></script>
 
   </body>
 </html>
