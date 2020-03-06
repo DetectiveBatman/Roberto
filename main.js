@@ -686,20 +686,23 @@ app.post('/panel/api/videoUpload', (req, res, next) => {
     });
   } else {
     let video = req.files.video;
+    let thumbnail = req.files.thumbnail;
 
-    let query = `INSERT INTO portfolio (title, enTitle, largeImg, category, subcat, aparat, youtube) VALUES (
+    let query = `INSERT INTO portfolio (title, enTitle, largeImg, category, subcat, aparat, youtube, img) VALUES (
       '${title}',
       '${enTitle}',
       '${video.name}',
       '${category}',
       '${subcat}',
       '${aparat}',
-      '${youtube}'
+      '${youtube}',
+      '${thumbnail.name}'
     )`;
     db.query(query, (err, resp, fld) => {
       if (err) console.log(err);
 
       video.mv('../ComaStudio/lib/video/' + video.name);
+      thumbnail.mv('../ComaStudio/lib/assets/' + thumbnail.name);
 
       res.sendFile(__dirname + '/view/dashboard.html');
     });
