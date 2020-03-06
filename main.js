@@ -190,7 +190,7 @@ app.post('/panel/api/portfolio', upload.array("images"), (req, res, next) => {
   var largePhoto = String(Math.floor(Math.random() * (10000000 - 10000) + 10000));
 
   let query =
-  `INSERT INTO portfolio (img, largeImg, title, description, category, subcat, enTitle, enDescription) VALUES (
+  `INSERT INTO portfolio (img, largeImg, title, description, category, subcat, enTitle, enDescription, artist) VALUES (
     '${photo}.jpg',
     '${largePhoto}.jpg',
     '${title}',
@@ -198,7 +198,8 @@ app.post('/panel/api/portfolio', upload.array("images"), (req, res, next) => {
     '${cat}',
     '${subcat}',
     '${enTitle}',
-    '${nl2br(enDesc)}'
+    '${nl2br(enDesc)}',
+    '${parameters.selectedArtist}'
   );`;
 
   db.query(query, (err, resp, fld) => {
@@ -678,6 +679,7 @@ app.post('/panel/api/videoUpload', (req, res, next) => {
   let subcat = params.selectedSubcat;
   let youtube = params.youtube;
   let aparat = params.aparat;
+  let aparat = params.selectedArtist;
 
   if (!req.files) {
     res.send({
@@ -688,7 +690,7 @@ app.post('/panel/api/videoUpload', (req, res, next) => {
     let video = req.files.video;
     let thumbnail = req.files.thumbnail;
 
-    let query = `INSERT INTO portfolio (title, enTitle, largeImg, category, subcat, aparat, youtube, img) VALUES (
+    let query = `INSERT INTO portfolio (title, enTitle, largeImg, category, subcat, aparat, youtube, img, artist) VALUES (
       '${title}',
       '${enTitle}',
       '${video.name}',
@@ -696,7 +698,8 @@ app.post('/panel/api/videoUpload', (req, res, next) => {
       '${subcat}',
       '${aparat}',
       '${youtube}',
-      '${thumbnail.name}'
+      '${thumbnail.name}',
+      '${selectedArtist}'
     )`;
     db.query(query, (err, resp, fld) => {
       if (err) console.log(err);
