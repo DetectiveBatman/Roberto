@@ -143,6 +143,14 @@ app.get('/panel/addVideo', (req, res, next) => {
   res.sendFile(__dirname + '/view/addVideo.html');
 });
 
+app.get('/panel/add%E2%80%8CVideo', (req, res, next) => {
+  res.sendFile(__dirname + '/view/addVideo.html');
+});
+
+app.get('/panel/addUser', (req, res, next) => {
+  res.sendFile(__dirname + '/view/addUser.html');
+});
+
 app.get('/panel/lib/*', (req, res, next) => {
   let path = __dirname + req.url.substr(6);
   res.sendFile(path)
@@ -679,7 +687,7 @@ app.post('/panel/api/videoUpload', (req, res, next) => {
   let subcat = params.selectedSubcat;
   let youtube = params.youtube;
   let aparat = params.aparat;
-  let aparat = params.selectedArtist;
+  let selectedArtist = params.selectedArtist;
 
   if (!req.files) {
     res.send({
@@ -712,6 +720,46 @@ app.post('/panel/api/videoUpload', (req, res, next) => {
   }
 });
 
+app.post('/panel/api/addUser', (req, res, next) => {
+  let params = req.body;
+  let name = params.name;
+  let enName = params.enName;
+  let username = params.username;
+  let biography = params.biography;
+  let enBiography = params.enBiography;
+
+  if (!req.files) {
+    res.send({
+      status: false,
+      message: 'فایلی آپلود نشده است.'
+    });
+  } else {
+    let photo1 = req.files.photo1;
+    let photo2 = req.files.photo2;
+    let profile = req.files.profile;
+
+    let query = `INSERT INTO users (name, enName, username, biography, enBiography, photo1, photo2, profile) VALUES (
+      '${name}',
+      '${enName}',
+      '${username}',
+      '${biography}',
+      '${enBiography}',
+      '${photo1.name}',
+      '${photo2.name}',
+      '${profile.name}'
+    )`;
+    db.query(query, (err, resp, fld) => {
+      if (err) console.log(err);
+
+      photo1.mv('../ComaStudio/lib/assets/' + photo1.name);
+      photo2.mv('../ComaStudio/lib/assets/' + photo2.name);
+      profile.mv('../ComaStudio/lib/assets/' + profile.name);
+
+      res.sendFile(__dirname + '/view/dashboard.html');
+    });
+  }
+
+});
 
 app.listen(port, () => {
   console.log(chalk.green.bold('[*] ') + chalk.green.bold('Listening on port:') + ' ' + chalk.red.bold(port));
