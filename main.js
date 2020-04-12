@@ -156,11 +156,11 @@ app.get('/panel/lib/*', (req, res, next) => {
   res.sendFile(path)
 });
 
-app.post('/panel/api/news', upload.single("images"), (req, res, next) => {
+app.post('/panel/api/news', upload.array("images"), (req, res, next) => {
   var parameters = req.body;
   let date       = new Date();
   let d          = `${date.getFullYear()}/${date.getMonth()}/${date.getDate()}`;
-  const tempPath   = req.file.path;
+  const tempPath   = req.files[0].path;
   const randomName = String(Math.floor(Math.random() * (10000000 - 10000) + 10000)); // The file's address
 
   let query =
@@ -328,8 +328,8 @@ app.post('/panel/api/addSubcat', upload.array("images"), (req, res, next) => {
 
 });
 
-app.post('/panel/api/backPhoto', upload.single("images"), (req, res, next) => {
-  const tempPath   = req.file.path;
+app.post('/panel/api/backPhoto', upload.array("images"), (req, res, next) => {
+  const tempPath   = req.files[0].path;
   const imgName = '../ComaStudio/lib/assets/backPhotoIndex.jpg';
 
   replaceContents(imgName, tempPath, err => {
@@ -339,8 +339,8 @@ app.post('/panel/api/backPhoto', upload.single("images"), (req, res, next) => {
 
 });
 
-app.post('/panel/api/topPhoto', upload.single("images"), (req, res, next) => {
-  const tempPath   = req.file.path;
+app.post('/panel/api/topPhoto', upload.array("images"), (req, res, next) => {
+  const tempPath   = req.files[0].path;
   const imgName = '../ComaStudio/lib/assets/01.jpg';
 
   replaceContents(imgName, tempPath, err => {
@@ -350,7 +350,7 @@ app.post('/panel/api/topPhoto', upload.single("images"), (req, res, next) => {
 
 });
 
-app.post('/panel/api/editNews', upload.single("images"), (req, res, next) => {
+app.post('/panel/api/editNews', upload.array("images"), (req, res, next) => {
   let params = req.body;
   let id = params.selectedCategory;
 
@@ -382,8 +382,8 @@ app.post('/panel/api/editNews', upload.single("images"), (req, res, next) => {
     });
   }
 
-  if (req.file != undefined) {
-    const tempPath   = req.file.path;
+  if (req.files[0] != undefined) {
+    const tempPath   = req.files[0].path;
     db.query(`SELECT * FROM news WHERE id='${id}'`, (err, resp, fld) =>{
       if (err) console.log(err);
       let pic = resp[0].photo;
